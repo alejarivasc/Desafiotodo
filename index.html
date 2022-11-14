@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<link rel="stylesheet" href="./assets/css/style.css"></head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
 <body>
-    <h2>Todo List</h2>
-    <hr>
-    <h4>Nueva tarea</h4>
-        <input id="ingresoTarea" type="text">
-        <button id="agregarTarea">Agregar</button>  
- 
- <p id="total">Total:</p>
-    <p id="realizadas">Realizadas:</p>
-<ul id="listaTareas" >
-</ul>
+    <main>
+        <h2>Todo List</h2>
+        <hr>
+        <section>
+            <form>
+                <input type="text" id="add" placeholder="Ingresa una tarea">
+                <button id="btnAdd">Agregar</button>
+            </form>
+        </section>
+        <section class="container">
+            <div class="result">
+                <p>Total: <span id="total"></span> </p>
+                <p>Realizadas: <span id="done"></span></p>
+            </div>
+            <div class="list">
+                <p><span class="title">ID</span> <span class="titleDo">Tarea</span></p>
+                <ul id="finalList"></ul>
+            </div>
+        </section>
+    </main>
 
 
-<script src="./assets/js/main.js"></script>
-
+    <script src="./assets/js/main.js"></script>
 </body>
+
 </html>

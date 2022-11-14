@@ -1,3 +1,70 @@
-.done{
+.finished{
     text-decoration: line-through;
+}
+
+main{
+    width: 800px;
+margin: 80px auto;
+border: solid;
+font-family: 'Roboto', sans-serif;
+border-radius: 10px;
+padding: 10px;
+box-shadow:   10px 5px 5px pink;
+}
+
+li{
+list-style: none;
+}
+
+#add{
+    width: 45vw;
+    border-radius: 2px;
+    margin-left: 2px;
+}
+
+#btnAdd{
+    border-radius: 5px;
+    padding: 3px;
+background-color: palevioletred;
+color: white;
+transition-duration: 0.4s;
+cursor: pointer;
+}
+#btnAdd:hover{
+background-color: brown;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+.title{
+    padding-right: 50px;
+    margin-left: 40px;
+}
+   #finalList{
+    display: flex;
+    flex-direction: column;
+    margin-right: 180px;
+   }
+
+   .info{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+   }
+
+   .deletebtn{
+    background-color: transparent;
+    border: none;
+   }
+
+.infobtn{
+    display: flex;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+span{
+    font-weight: 700 ;
 }

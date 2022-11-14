@@ -1,73 +1,69 @@
-const ingresoTarea = document.querySelector("#ingresoTarea");
-const agregarTarea = document.querySelector("#agregarTarea");
+const add = document.querySelector("#add");
+const btnAdd = document.querySelector("#btnAdd");
 const total = document.querySelector("#total");
-const realizadas = document.querySelector("#realizadas");
-const listaTareas = document.querySelector("#listaTareas");
+const done = document.querySelector("#done");
+const finalList = document.querySelector("#finalList");
 
-
-let tareas =[
-    // {id: 16, Tarea: "Hacer mercado"},
-    // {id: 60, Tarea: "Estudiar para la prueba"},
-    // {id: 24, Tarea: "Sacar a pasear a Tobby"}
+let tareas = [
+  { id: 16, Tarea: "Hacer mercado", completed: false },
+  { id: 60, Tarea: "Estudiar para la prueba", completed: false },
+  { id: 24, Tarea: "Sacar a pasear a Tobby", completed: false },
 ];
 
-const render = (array) =>{
-    listaTareas.innerHTML = ""
-    array.forEach(tarea =>{
-        listaTareas.innerHTML += `<li>ID: ${tarea.id}
-        - Tarea: ${tarea.Tarea};  
-        <input type="checkbox" data-update="${tarea.id}"></input>
-        <button data-delete="${tarea.id}">X</button>
-        </li>`
-        total.innerHTML = `Total: ${tareas.length}`
-
-    }); 
-}
-
-
-
- render (tareas);
-
-agregarTarea.addEventListener ("click", ()=> {
-const nuevaTarea = ingresoTarea.value;
-tareas.push ({
-    id: Date.now(),
-    Tarea: nuevaTarea,
-});
-ingresoTarea.value= ""
-listaTareas.innerHTML = "";
+const render = (array) => {
+  finalList.innerHTML = "";
+  let totalDone = 0;
+  array.forEach((tarea) => {
+    let completed = "";
+    let modStyle = "";
+    if (tarea.completed) {
+      completed = "checked";
+      totalDone++;
+      modStyle = `class="finished"`;
+    }
+    finalList.innerHTML += `<li class ="info"><p>${tarea.id}</p>
+        <p ${modStyle}>${tarea.Tarea}</p>
+        <div class="infobtn"> <input type="checkbox" ${completed} data-update="${tarea.id}"></input>
+        <button class="deletebtn" data-delete="${tarea.id}">❌</button>
+        </div></li>`;
+  });
+  total.textContent = `${tareas.length}`;
+  done.textContent = `${totalDone}`;
+};
 
 render(tareas);
 
-
-})
-// Delegación de eventos 
-listaTareas.addEventListener("click", (e) =>{
-    //Eliminar
-    if (e.target.dataset.delete){
-        const idTarea = e.target.dataset.delete;
-tareas = tareas.filter((tarea)=> tarea.id !== parseInt(idTarea))
-
-render (tareas);
-
-    }
-    // actualizar
-if (e.target.dataset.update) {
-    console.log(e)
- const idTarea = e.target.dataset.update;
- const newArray = tareas.map((tarea) => {
-    if (tarea.id == parseInt(idTarea)) {
-        tarea.classList.toggle = ("done")
-
-
-
- }
-return tarea;
-});
-tareas = newArray;
-render(newArray);
-realizadas.innerHTML = `Realizadas: ${newArray.length}`
-
+btnAdd.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (add.value != ""){
+  const addToDo = add.value;
+  tareas.push({
+    id: Date.now(),
+    Tarea: addToDo,
+    completed: false,
+  });
+  render(tareas);
+  add.value = "";
+//   finalList.innerHTML = "";
+} else {
+    alert ("Debes ingresar una tarea")
 }
 
- });
+});
+
+// Delegación de eventos
+finalList.addEventListener("click", (e) => {
+  //Eliminar
+  if (e.target.dataset.delete) {
+    const idTarea = e.target.dataset.delete;
+    tareas = tareas.filter((tarea) => tarea.id !== parseInt(idTarea));
+    render(tareas);
+  }
+  // check box
+  if (e.target.dataset.update) {
+    const idTarea = e.target.dataset.update;
+    const index = tareas.findIndex((tarea) => tarea.id == idTarea);
+    tareas[index].completed = !tareas[index].completed;
+    render(tareas);
+  }
+});
